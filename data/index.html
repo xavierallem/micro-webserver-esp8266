@@ -1,0 +1,212 @@
+<html>
+<head>
+<style>
+
+@import url(https://fonts.googleapis.com/css?family=Akronim);
+
+body {
+    background: #ffffff;
+}
+
+.fire {
+  margin: 50px auto;
+  width: 80%;
+  max-width: 1000px;
+  height: 200px;
+
+  background-position: center center;
+  background-size: 1000px 200px;
+  border-radius: 10px;
+  font-family: 'Akronim';
+  overflow: hidden;
+    text-align: center;
+  vertical-align: middle;
+
+}
+.fire:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.Blazing {
+  display: inline-block;
+  margin: 0;
+
+    color: rgb(255, 115, 0);
+    font-size: 100px;
+  line-height: 50px;
+  min-width: 50px;
+  outline: none;
+  vertical-align: middle;
+    
+  text-shadow:
+        0 3px 20px red,
+        0 0 20px red,
+    0 0 10px orange,
+    4px -5px 6px yellow,
+    -4px -10px 10px yellow,
+    0 -10px 30px yellow;
+  animation: 2s Blazing infinite alternate linear;
+}
+
+@keyframes Blazing {
+  0%   { text-shadow: 0 3px 20px red, 0 0 20px red,
+    0 0 10px orange,
+    0 0 0 yellow,
+    0 0 5px yellow,
+    -2px -5px 5px yellow,
+    4px -10px 10px yellow; }
+  25%   { text-shadow: 0 3px 20px red, 0 0 30px red,
+    0 0 20px orange,
+    0 0 5px yellow,
+    -2px -5px 5px yellow,
+    3px -10px 10px yellow,
+    -4px -15px 20px yellow; }
+  50%   { text-shadow: 0 3px 20px red, 0 0 20px red,
+    0 -5px 10px orange,
+    -2px -5px 5px yellow,
+    3px -10px 10px yellow,
+    -4px -15px 20px yellow,
+    2px -20px 30px rgba(255,255,0,0.5); }
+  75%   { text-shadow: 0 3px 20px red, 0 0 20px red,
+    0 -5px 10px orange,
+    3px -5px 5px yellow,
+    -4px -10px 10px yellow,
+    2px -20px 30px rgba(255,255,0,0.5),
+    0px -25px 40px rgba(255,255,0,0)}
+  100%   { text-shadow: 0 3px 20px red, 0 0 20px red,
+    0 0 10px orange,
+    0 0 0 yellow,
+    0 0 5px yellow,
+    -2px -5px 5px yellow,
+    4px -10px 10px yellow; }
+}
+
+html {
+  font-family: Arial;
+  display: inline-block;
+  margin: 0px auto;
+  text-align: center;
+}
+h1 {
+  color: #0F3376;
+  padding: 2vh;
+}
+p {
+  font-size: 1.5rem;
+  font-family: Monaco;
+  
+  
+}
+.button {
+  display: inline-block;
+  background-color: #ADFF2F;
+   border: 2px solid #4CAF50;
+  border-radius: 12px;
+  color: red;
+  padding: 16px 40px;
+  text-decoration: none;
+  font-family: Monaco;
+  font-size: 30px;
+  margin: 2px;
+  cursor: pointer;
+}
+
+
+.button:hover {
+background-color: #ffcccb;
+ box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);}
+
+
+
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+</style>
+  <title>ESP8266 Web Server</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="data:,">
+</head>
+<body>
+ <div class="dark fire">
+        <h1 class="Blazing" contenteditable="true">ESP8266 Webserver</h1>
+  </div>
+<p> Fan Status: <span id="led-state">__</span> </p>
+<p> Light Status: <span id="led-state1">__</span> </p>
+<p> AC Status: <span id="led-state2">__</span> </p>
+<p> Motor Status: <span id="led-state3">__</span> </p>
+
+<button class="button" onclick="myFunction()"> Fan </button>
+<button class="button" onclick="myFunction1()"> Light </button>
+<button class="button" onclick="myFunction2()"> AC </button>
+<button class="button" onclick="myFunction3()"> Motor </button>
+
+</body>
+<script>
+function myFunction()
+{
+  console.log("button was clicked!");
+  var xhr = new XMLHttpRequest();
+  var url = "/ledstate";
+
+  xhr.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("led-state").innerHTML = this.responseText;
+    }
+  };
+
+  xhr.open("GET", url, true);
+  xhr.send();
+};
+function myFunction1()
+{
+  console.log("button was clicked!");
+  var xhr = new XMLHttpRequest();
+  var url = "/ledstate1";
+
+  xhr.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("led-state1").innerHTML = this.responseText;
+    }
+  };
+
+  xhr.open("GET", url, true);
+  xhr.send();
+};
+function myFunction2()
+{
+  console.log("button was clicked!");
+  var xhr = new XMLHttpRequest();
+  var url = "/ledstate2";
+
+  xhr.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("led-state2").innerHTML = this.responseText;
+    }
+  };
+
+  xhr.open("GET", url, true);
+  xhr.send();
+};
+function myFunction3()
+{
+  console.log("button was clicked!");
+  var xhr = new XMLHttpRequest();
+  var url = "/ledstate3";
+
+  xhr.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("led-state3").innerHTML = this.responseText;
+    }
+  };
+
+  xhr.open("GET", url, true);
+  xhr.send();
+};
+document.addEventListener('DOMContentLoaded', myFunction, false);
+</script>
+</html>
