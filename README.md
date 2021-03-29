@@ -1,6 +1,6 @@
 # Micro Webserver with ESP8266(Node MCU)
 
-This project is for home automation using web bowser with standalone webserver. The html file is hosted from the MCU itself hence no need of host machine.
+This project is for home automation using web browser with standalone webserver. The html file is hosted from the MCU itself hence no need of host machine.
 By going to the locally assigned Ip address to the MCU we control relays from the website. These relays then actuate respected home Electrical Appliances
 
 ![web](esp8266_webserver.png)
